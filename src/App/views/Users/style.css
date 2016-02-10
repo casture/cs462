@@ -1,6 +1,15 @@
 @import 'settings.colors';
 @import 'settings.global';
 
+.user-tile {
+  /*width: 200px;*/
+  /*height: 200px;*/
+  /*text-height: 300px;
+  text-align: center;
+  background-color: #fff;*/
+  margin: 10px;
+}
+
 .container {
   width: 100%;
   min-height: 100%;
@@ -13,8 +22,8 @@
   padding: 15px 0;
   min-height: 70px;
   text-align: center;
-  color: var(--clr-blue);
-  background-color: white;
+  color: white;
+  background-color: var(--clr-blue);
 }
 
 .list {

@@ -1,1 +1,1 @@
-export { appSpecs } from 'App/state/reducers'
+export * from 'App/state/reducers'

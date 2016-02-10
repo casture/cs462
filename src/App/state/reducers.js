@@ -1,18 +1,28 @@
 import { createReducer } from 'utils.redux'
 
-/**
- * This reducer is here in order to demonstrate inputting and retrieving state w/ redux.
- * Because it is only used in one view and does not change, a hard coded array in the
- * component that uses it normally would be plenty appropriate.
- *
- * When removing this reducer, don't forget to unregister it from redux.reducers
- */
-export const appSpecs = createReducer([
-  'react 😘',
-  'redux 🎉',
-  'react + redux router',
-  'webpack',
-  'babel / es6',
-  'CSS Modules',
-  'CSSnext'
-], {})
+export const users = createReducer([], {
+  ['IMPORT_USERS']: (state, action) => action.users,
+  ['ADD_USER']: (state, { name }) => [
+    ...state,
+    { name }
+  ]
+})
+
+export const user = createReducer({}, {
+  ['SIGN_IN_SUCCESS']: (state, action) => {
+    console.log(action)
+    return state
+  },
+  ['SIGN_IN_FAILURE']: (state, action) => {
+    console.log(action)
+    return state
+  },
+  ['SIGN_OUT']: (state, action) => {}
+})
+
+export const session = createReducer({}, {
+  ['SIGN_IN_SUCCESS']: (state, action) => {
+    console.log(action)
+    return state
+  }
+})

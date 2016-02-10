@@ -1,11 +1,24 @@
 import { configureApiMiddleware } from 'redux-axios-api-middleware'
 import { CALL_API } from 'App/state/actions'
 
-const env = process.env.NODE_ENV || 'development'
-const isProd = env === 'production'
+let apiRoot = 'https://localhost/'
 
-export const API_ROOT = isProd
-  ? 'http://[PRODUCTION ROOT API URL HERE]'
-  : 'http://[STAGING ROOT API URL HERE]'
+export const API_ROOT = apiRoot
 
-export default configureApiMiddleware(CALL_API, API_ROOT)
+const addToken = (getState, config) => {
+  const { session } = getState()
+  let headers = {}
+  console.log(getState, config)
+
+  if (session.token && config.url.match(API_ROOT)) {
+    headers = { Authorization: `Bearer ${session.token}` }
+  }
+
+  return {
+    ...config,
+    headers: { ...headers, ...config.headers }
+  }
+}
+
+export default configureApiMiddleware(CALL_API, API_ROOT, { requests: [addToken] })
+// export default configureApiMiddleware(CALL_API, API_ROOT)
